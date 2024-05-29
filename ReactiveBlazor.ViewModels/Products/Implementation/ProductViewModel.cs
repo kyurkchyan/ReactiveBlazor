@@ -15,4 +15,5 @@ internal class ProductViewModel : BaseValidatableNavigationViewModel<IProductVie
     [Reactive] public string? Name { get; set; }
 
     [Reactive] public string? Description { get; set; }
+    [Reactive] public DateTime? ExpirationDate { get; set; }
 }

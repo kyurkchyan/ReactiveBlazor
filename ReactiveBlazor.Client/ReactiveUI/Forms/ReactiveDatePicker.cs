@@ -3,7 +3,7 @@ using MudBlazor;
 
 namespace ReactiveBlazor.Client.ReactiveUI.Forms;
 
-public class ReactiveTextField<T> : MudTextField<T>, IReactiveField
+public class ReactiveDatePicker : MudDatePicker, IReactiveField
 {
     [Parameter] public string? ValidationError { get; set; }
 

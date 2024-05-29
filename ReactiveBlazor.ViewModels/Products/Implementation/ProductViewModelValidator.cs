@@ -1,4 +1,3 @@
-using System.Reactive.Concurrency;
 using FluentValidation;
 using ReactiveBlazor.ViewModels.Common.Validation;
 
@@ -26,6 +25,16 @@ internal class ProductViewModelValidator : AbstractViewModelValidator<IProductVi
                     .WithMessage("You must specify a valid description")
                     .MaximumLength(20)
                     .WithMessage("Product description must be less than 20 characters");
+            });
+
+        RuleFor(vm => vm.ExpirationDate,
+            builder =>
+            {
+                builder
+                    .NotNull()
+                    .WithMessage("You must specify a valid expiration date")
+                    .GreaterThan(DateTime.Now)
+                    .WithMessage("Expiration date must be in the future");
             });
     }
 }

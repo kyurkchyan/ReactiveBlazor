@@ -6,12 +6,12 @@
 
 <MudForm Model="ViewModel">
     <ReactiveTextField
+        @ref="_productName"
         @bind-Value="ViewModel!.Name"
         T="string?"
         Label="Product name"
         Immediate="true"
         Clearable="true"
-        ValidationError="@ProductNameValidation"
         Variant="Variant.Outlined"/>
 
     <ReactiveTextField
@@ -20,6 +20,13 @@
         T="string?"
         Label="Product Description"
         Immediate="true"
+        Clearable="true"
+        Variant="Variant.Outlined"/>
+
+    <ReactiveDatePicker
+        @ref="_expirationDate"
+        @bind-Date="ViewModel!.ExpirationDate"
+        Label="Expiration Date"
         Clearable="true"
         Variant="Variant.Outlined"/>
 
