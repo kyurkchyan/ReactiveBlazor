@@ -3,50 +3,68 @@
 @using ReactiveBlazor.ViewModels.Products
 @inherits ReactiveBlazor.Client.Pages.Common.BasePage<ReactiveBlazor.ViewModels.Products.IProductViewModel>
 
-<h3>Product Page</h3>
+<div class="m-container">
+    <MudPaper Class="d-flex align-center justify-space-between pa-4">
+        <div class="d-flex flex-column">
+            <MudText Typo="Typo.h5">Product Details</MudText>
+        </div>
+    </MudPaper>
 
-<MudForm Model="ViewModel">
-    <MudButton Variant="Variant.Filled" Color="Color.Inherit" OnClick="OnClearClicked">Clear</MudButton>
-    <ReactiveTextField
-        @ref="_productName"
-        @bind-Value="ViewModel!.Name"
-        T="string?"
-        Label="Product name"
-        Immediate="true"
-        Clearable="true"
-        Variant="Variant.Outlined"/>
+    <div class="m-content">
+        <MudCard Class="pa-4">
+            <MudForm Model="ViewModel">
+                <MudStack>
+                    <MudButton Variant="Variant.Filled" Color="Color.Inherit" OnClick="OnClearClicked">Clear</MudButton>
+                    <ReactiveTextField
+                        @ref="_productName"
+                        @bind-Value="ViewModel!.Name"
+                        T="string?"
+                        Label="Product name"
+                        Immediate="true"
+                        Clearable="true"
+                        Variant="Variant.Outlined"/>
 
-    <ReactiveTextField
-        @ref="_productDescription"
-        @bind-Value="ViewModel!.Description"
-        T="string?"
-        Label="Product Description"
-        Immediate="true"
-        Clearable="true"
-        Variant="Variant.Outlined"/>
+                    <ReactiveTextField
+                        @ref="_productDescription"
+                        @bind-Value="ViewModel!.Description"
+                        T="string?"
+                        Label="Product Description"
+                        Immediate="true"
+                        Clearable="true"
+                        Variant="Variant.Outlined"/>
 
-    <ReactiveDatePicker
-        @ref="_expirationDate"
-        @bind-Date="ViewModel!.ExpirationDate"
-        Label="Expiration Date"
-        Clearable="true"
-        Variant="Variant.Outlined"/>
+                    <ReactiveDatePicker
+                        @ref="_expirationDate"
+                        @bind-Date="ViewModel!.ExpirationDate"
+                        Label="Expiration Date"
+                        Clearable="true"
+                        Variant="Variant.Outlined"/>
 
-    <ReactiveSelect
-        @ref="_category"
-        T="ProductCategory?"
-        @bind-Value="ViewModel!.Category"
-        Label="Category"
-        Clearable="true"
-        Variant="Variant.Outlined"
-        AnchorOrigin="Origin.BottomCenter">
-        @foreach (var category in ViewModel!.Categories)
-        {
-            <MudSelectItem T="ProductCategory?" Value="@((ProductCategory?)category)"/>
-        }
-    </ReactiveSelect>
-</MudForm>
+                    <ReactiveSelect
+                        @ref="_category"
+                        T="ProductCategory?"
+                        @bind-Value="ViewModel!.Category"
+                        Label="Category"
+                        Clearable="true"
+                        Variant="Variant.Outlined"
+                        AnchorOrigin="Origin.BottomCenter">
+                        @foreach (var category in ViewModel!.Categories)
+                        {
+                            <MudSelectItem T="ProductCategory?" Value="@((ProductCategory?)category)"/>
+                        }
+                    </ReactiveSelect>
 
-@code {
+                    <div class="validation-errors">
+                        <ul>
+                            @foreach (var error in ViewModel!.GetAllErrors())
+                            {
+                                <li>@error</li>
+                            }
+                        </ul>
+                    </div>
 
-}
+                </MudStack>
+            </MudForm>
+        </MudCard>
+    </div>
+</div>

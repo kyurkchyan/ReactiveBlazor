@@ -1,0 +1,63 @@
+/*
+	This CSS file matches the color scheme from MudBlazor to Bootstrap when utilized for authentication.
+	The file remains available at all times for demonstration purposes,
+	but it is exclusively employed in the 'App.razor' component when authentication is enabled.
+*/
+
+.btn-primary {
+    text-transform: uppercase;
+    --bs-btn-bg: var(--mud-palette-primary) !important;
+    --bs-btn-hover-bg: var(--mud-palette-primary-darken) !important;
+}
+
+.nav-pills {
+    --bs-nav-pills-link-active-bg: var(--mud-palette-primary) !important;
+}
+
+.nav {
+    --bs-nav-link-color: var(--mud-palette-primary) !important;
+    --bs-nav-link-hover-color: var(--mud-palette-primary-darken) !important;
+}
+
+
+html, .m-container {
+    background: var(--mud-palette-background-grey);
+}
+
+.m-content {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    gap: 16px;
+}
+
+/* Container for the validation errors */
+.validation-errors {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+/* Style for the unordered list */
+.validation-errors ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+/* Style for each list item */
+.validation-errors li {
+    margin-bottom: 5px;
+    padding-left: 20px;
+    position: relative;
+}
+
+/* Custom bullet for each list item */
+.validation-errors li::before {
+    content: "•";
+    color: #721c24;
+    position: absolute;
+    left: 0;
+}
