@@ -1,0 +1,31 @@
+@page "/product"
+@inherits ReactiveBlazor.Client.ReactiveUI.ActivatableInjectableComponent<ReactiveBlazor.ViewModels.ProductViewModel>
+@using MudBlazor
+@using ReactiveBlazor.Client.ReactiveUI.Forms
+
+<h3>ProductPage</h3>
+
+<MudForm Model="ViewModel">
+    <ReactiveTextField
+        @bind-Value="ViewModel!.Name"
+        T="string?"
+        Label="Product name"
+        Immediate="true"
+        Clearable="true"
+        ValidationError="@ProductNameValidation"
+        Variant="Variant.Outlined"/>
+
+    <ReactiveTextField
+        @ref="_productDescription"
+        @bind-Value="ViewModel!.Description"
+        T="string?"
+        Label="Product Description"
+        Immediate="true"
+        Clearable="true"
+        Variant="Variant.Outlined"/>
+
+</MudForm>
+
+@code {
+
+}
