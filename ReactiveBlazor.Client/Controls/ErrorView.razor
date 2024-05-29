@@ -1,0 +1,8 @@
+@inherits  ReactiveBlazor.Client.ReactiveUI.ReactiveComponent<ReactiveBlazor.ViewModels.Common.ViewModels.ErrorViewModel>;
+
+<MudStack AlignItems="AlignItems.Center">
+    <MudIcon Icon="@Icons.Material.TwoTone.Error" Style="font-size: 4rem;"/>
+    <MudText Typo="Typo.h4" Align="Align.Center">Oops...</MudText>
+    <MudText Typo="Typo.subtitle1" Align="Align.Center">@ViewModel?.Message</MudText>
+    <MudButton Variant="Variant.Outlined" Color="Color.Primary" OnClick="TryAgainButtonClicked">Try Again</MudButton>
+</MudStack>

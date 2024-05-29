@@ -1,0 +1,16 @@
+@using MudBlazor
+@inherits ReactiveBlazor.Client.ReactiveUI.ActivatableComponent<ReactiveBlazor.ViewModels.Common.ViewModels.AsyncConfirmDialogViewModel>
+<MudDialog
+    Options="_dialogOptions">
+    <DialogContent>
+        @ViewModel?.Description
+    </DialogContent>
+    <DialogActions>
+        <MudButton Variant="Variant.Filled" Color="Color.Inherit" OnClick="OnCancelClicked">@ViewModel?.CancelButtonText</MudButton>
+        <MudButton @ref="_confirmButton" Variant="Variant.Filled" Color="@ConfirmColor">
+            <MudIcon Class="ms-n1" Icon="@ConfirmIcon" hidden="@(IsExecuting)"/>
+            <MudProgressCircular Class="ms-n1" hidden="@(!IsExecuting)" Size="Size.Small" Indeterminate="true"/>
+            <MudText class="ms-2">@ViewModel?.ConfirmButtonText</MudText>
+        </MudButton>
+    </DialogActions>
+</MudDialog>
