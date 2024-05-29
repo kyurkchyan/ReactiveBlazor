@@ -1,6 +1,7 @@
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using ReactiveBlazor.Client.ReactiveUI.Forms;
+using ReactiveBlazor.ViewModels.Products;
 using ReactiveUI;
 using ReactiveUI.Validation.Extensions;
 
@@ -11,6 +12,7 @@ public partial class ProductPage
     private ReactiveTextField<string> _productName = null!;
     private ReactiveTextField<string> _productDescription = null!;
     private ReactiveDatePicker _expirationDate = null!;
+    private ReactiveSelect<ProductCategory?> _category = null!;
 
     public ProductPage()
     {
@@ -32,6 +34,9 @@ public partial class ProductPage
 
             this.BindValidation(ViewModel, vm => vm.ExpirationDate, v => v._expirationDate.ValidationError)
                 .DisposeWith(disposables);
+
+            this.BindValidation(ViewModel, vm => vm.Category, v => v._category.ValidationError)
+                .DisposeWith(disposables);
         });
     }
 
@@ -45,5 +50,6 @@ public partial class ProductPage
         ViewModel.Name = null;
         ViewModel.Description = null;
         ViewModel.ExpirationDate = null;
+        ViewModel.Category = null;
     }
 }

@@ -36,5 +36,15 @@ internal class ProductViewModelValidator : AbstractViewModelValidator<IProductVi
                     .GreaterThan(DateTime.Now)
                     .WithMessage("Expiration date must be in the future");
             });
+
+        RuleFor(vm => vm.Category,
+            builder =>
+            {
+                builder
+                    .NotNull()
+                    .WithMessage("You must specify a valid category")
+                    .Must(category => category != ProductCategory.Antiques)
+                    .WithMessage("Sorry, we don't accept antiques at the moment");
+            });
     }
 }

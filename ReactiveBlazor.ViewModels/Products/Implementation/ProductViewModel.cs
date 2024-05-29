@@ -16,4 +16,6 @@ internal class ProductViewModel : BaseValidatableNavigationViewModel<IProductVie
 
     [Reactive] public string? Description { get; set; }
     [Reactive] public DateTime? ExpirationDate { get; set; }
+    [Reactive] public ProductCategory? Category { get; set; }
+    public IEnumerable<ProductCategory> Categories { get; } = Enum.GetValues<ProductCategory>();
 }

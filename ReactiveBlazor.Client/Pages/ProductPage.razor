@@ -1,5 +1,6 @@
 @page "/product"
 @using ReactiveBlazor.Client.ReactiveUI.Forms
+@using ReactiveBlazor.ViewModels.Products
 @inherits ReactiveBlazor.Client.Pages.Common.BasePage<ReactiveBlazor.ViewModels.Products.IProductViewModel>
 
 <h3>Product Page</h3>
@@ -31,6 +32,19 @@
         Clearable="true"
         Variant="Variant.Outlined"/>
 
+    <ReactiveSelect
+        @ref="_category"
+        T="ProductCategory?"
+        @bind-Value="ViewModel!.Category"
+        Label="Category"
+        Clearable="true"
+        Variant="Variant.Outlined"
+        AnchorOrigin="Origin.BottomCenter">
+        @foreach (var category in ViewModel!.Categories)
+        {
+            <MudSelectItem T="ProductCategory?" Value="@((ProductCategory?)category)"/>
+        }
+    </ReactiveSelect>
 </MudForm>
 
 @code {
