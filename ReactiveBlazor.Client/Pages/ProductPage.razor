@@ -1,6 +1,7 @@
 @page "/product"
 @using ReactiveBlazor.Client.ReactiveUI.Forms
 @using ReactiveBlazor.ViewModels.Products
+@using ReactiveBlazor.Client.ReactiveUI
 @inherits ReactiveBlazor.Client.Pages.Common.BasePage<ReactiveBlazor.ViewModels.Products.IProductViewModel>
 
 <div class="m-container">
@@ -12,12 +13,13 @@
 
     <div class="m-content">
         <MudCard Class="pa-4">
-            <MudForm Model="ViewModel">
+            <ReactiveForm ViewModel="ViewModel">
                 <MudStack>
                     <MudButton Variant="Variant.Filled" Color="Color.Inherit" OnClick="OnClearClicked">Clear</MudButton>
                     <ReactiveTextField
                         @ref="_productName"
                         @bind-Value="ViewModel!.Name"
+                        For="@(() => ViewModel!.Name)"
                         T="string?"
                         Label="Product name"
                         Immediate="true"
@@ -27,6 +29,7 @@
                     <ReactiveTextField
                         @ref="_productDescription"
                         @bind-Value="ViewModel!.Description"
+                        For="@(() => ViewModel!.Description)"
                         T="string?"
                         Label="Product Description"
                         Immediate="true"
@@ -36,14 +39,17 @@
                     <ReactiveDatePicker
                         @ref="_expirationDate"
                         @bind-Date="ViewModel!.ExpirationDate"
+                        For="@(() => ViewModel!.ExpirationDate)"
                         Label="Expiration Date"
                         Clearable="true"
                         Variant="Variant.Outlined"/>
-
+                    <MudButton Variant="Variant.Filled" Color="Color.Inherit" OnClick="@(() => ViewModel!.ExpirationDate = DateTime.Now.AddDays(10))">Set Valid Date</MudButton>
+                    <MudButton Variant="Variant.Filled" Color="Color.Inherit" OnClick="@(() => ViewModel!.ExpirationDate = DateTime.Now.AddDays(-10))">Set Invalid Date</MudButton>
                     <ReactiveSelect
                         @ref="_category"
                         T="ProductCategory?"
                         @bind-Value="ViewModel!.Category"
+                        For="@(() => ViewModel!.Category)"
                         Label="Category"
                         Clearable="true"
                         Variant="Variant.Outlined"
@@ -64,7 +70,7 @@
                     </div>
 
                 </MudStack>
-            </MudForm>
+            </ReactiveForm>
         </MudCard>
     </div>
 </div>

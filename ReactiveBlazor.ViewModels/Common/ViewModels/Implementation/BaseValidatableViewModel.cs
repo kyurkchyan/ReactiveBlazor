@@ -30,7 +30,6 @@ public abstract class BaseValidatableViewModel : BaseDisposableViewModel, IValid
     public string[] GetAllErrors() => Validator.GetAllErrors();
 
     public string[] GetPropertyErrors(string propertyName) => Validator.GetPropertyErrors(propertyName);
-    public Func<object, string, Task<IEnumerable<string>>> ValidateProperty => Validator.ValidateProperty;
 
     public IEnumerable GetErrors(string? propertyName) => Validator.GetErrors(propertyName);
 

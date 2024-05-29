@@ -8,5 +8,4 @@ public interface IViewModelValidator : IDisposable
     IEnumerable GetErrors(string? propertyName);
     public string[] GetAllErrors();
     public string[] GetPropertyErrors(string propertyName);
-    public Func<object, string, Task<IEnumerable<string>>> ValidateProperty { get; }
 }

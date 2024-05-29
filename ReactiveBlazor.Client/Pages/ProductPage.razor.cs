@@ -1,5 +1,4 @@
 using System.Reactive.Disposables;
-using System.Reactive.Linq;
 using ReactiveBlazor.Client.ReactiveUI.Forms;
 using ReactiveBlazor.ViewModels.Products;
 using ReactiveUI;
@@ -18,14 +17,6 @@ public partial class ProductPage
     {
         this.WhenActivated(disposables =>
         {
-            this.WhenAnyValue(v => v.ViewModel)
-                .WhereNotNull()
-                .Select(vm => vm.ValidationContext.ValidationStatusChange)
-                .Switch()
-                .DistinctUntilChanged()
-                .Subscribe(_ => InvokeAsync(StateHasChanged))
-                .DisposeWith(disposables);
-
             this.BindValidation(ViewModel, vm => vm.Name, v => v._productName.ValidationError)
                 .DisposeWith(disposables);
 

@@ -13,5 +13,4 @@ public interface IValidatableViewModel : ReactiveUI.Validation.Abstractions.IVal
     void SetValidationContext(ValidationContext context);
     public string[] GetAllErrors();
     public string[] GetPropertyErrors(string propertyName);
-    public Func<object, string, Task<IEnumerable<string>>> ValidateProperty { get; }
 }

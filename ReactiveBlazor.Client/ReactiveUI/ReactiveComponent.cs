@@ -5,4 +5,5 @@ namespace ReactiveBlazor.Client.ReactiveUI;
 
 public class ReactiveComponent<T> : ReactiveComponentBase<T> where T : class, INotifyPropertyChanged
 {
+
 }

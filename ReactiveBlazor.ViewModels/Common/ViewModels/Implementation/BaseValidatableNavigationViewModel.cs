@@ -32,7 +32,6 @@ public abstract class BaseValidatableNavigationViewModel : BaseNavigationViewMod
     public string[] GetAllErrors() => Validator.GetAllErrors();
 
     public string[] GetPropertyErrors(string propertyName) => Validator.GetPropertyErrors(propertyName);
-    public Func<object, string, Task<IEnumerable<string>>> ValidateProperty => Validator.ValidateProperty;
 
     [Reactive]
     public bool HasErrors { get; private set; }
