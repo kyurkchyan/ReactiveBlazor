@@ -5,7 +5,8 @@ namespace ReactiveBlazor.Client.ReactiveUI.Forms;
 
 public class ReactiveTextField<T> : MudTextField<T>, IReactiveField
 {
-    [Parameter] public string? ValidationError { get; set; }
+    [Parameter]
+    public string? ValidationError { get; set; }
 
     protected override void OnParametersSet()
     {

@@ -31,29 +31,29 @@ public class AbstractViewModelValidator<TViewModel> : AbstractValidator<TViewMod
     ///     <see cref="CurrentThreadScheduler" /> by default.
     /// </param>
     protected AbstractViewModelValidator(TViewModel viewModel,
-        IScheduler? scheduler = null)
+                                         IScheduler? scheduler = null)
     {
         _viewModel = viewModel;
 
         _validationContext = new ValidationContext(scheduler);
         _viewModel.SetValidationContext(_validationContext);
         _bindings = _validationContext.Validations
-            .Connect()
-            .ToCollection()
-            .Select(components => components
-                .Select(component => component
-                    .ValidationStatusChange
-                    .Select(_ => component))
-                .Merge()
-                .StartWith(_validationContext))
-            .Switch()
-            .Subscribe(OnValidationStatusChange);
+                                      .Connect()
+                                      .ToCollection()
+                                      .Select(components => components
+                                                            .Select(component => component
+                                                                                 .ValidationStatusChange
+                                                                                 .Select(_ => component))
+                                                            .Merge()
+                                                            .StartWith(_validationContext))
+                                      .Switch()
+                                      .Subscribe(OnValidationStatusChange);
     }
 
     public IObservable<bool> Valid => _validationContext.Valid;
 
     protected void RuleFor<TProperty>(Expression<Func<TViewModel, TProperty>> expression,
-        Action<IRuleBuilder<TViewModel, TProperty>> configureRules)
+                                      Action<IRuleBuilder<TViewModel, TProperty>> configureRules)
     {
         IRuleBuilder<TViewModel, TProperty> ruleBuilderInitial = RuleFor(expression);
 
@@ -69,14 +69,14 @@ public class AbstractViewModelValidator<TViewModel> : AbstractValidator<TViewMod
 
     public string[] GetAllErrors()
         => SelectInvalidPropertyValidations()
-            .SelectMany(state => state.Text ?? ValidationText.None)
-            .ToArray();
+           .SelectMany(state => state.Text ?? ValidationText.None)
+           .ToArray();
 
     public string[] GetPropertyErrors(string propertyName)
         => SelectInvalidPropertyValidations()
-            .Where(validation => validation.ContainsPropertyName(propertyName))
-            .SelectMany(state => state.Text ?? ValidationText.None)
-            .ToArray();
+           .Where(validation => validation.ContainsPropertyName(propertyName))
+           .SelectMany(state => state.Text ?? ValidationText.None)
+           .ToArray();
 
     /// <summary>
     ///     Raises the <see cref="INotifyDataErrorInfo.ErrorsChanged" /> event.
@@ -91,8 +91,8 @@ public class AbstractViewModelValidator<TViewModel> : AbstractValidator<TViewMod
     /// <returns>Returns the invalid property validations.</returns>
     private IEnumerable<IPropertyValidationComponent> SelectInvalidPropertyValidations() =>
         _validationContext.Validations.Items
-            .OfType<IPropertyValidationComponent>()
-            .Where(validation => !validation.IsValid);
+                          .OfType<IPropertyValidationComponent>()
+                          .Where(validation => !validation.IsValid);
 
     /// <summary>
     ///     Updates the <see cref="INotifyDataErrorInfo.HasErrors" /> property before raising the
@@ -132,17 +132,18 @@ public class AbstractViewModelValidator<TViewModel> : AbstractValidator<TViewMod
         Expression<Func<TViewModel, TProperty>> expression)
     {
         return _viewModel.WhenAnyValue(expression)
-            .Select(_ => GetValidationContextForProperty(expression))
-            .SelectMany(context => ValidateAsync(context).ToObservable())
-            .Select(validationResult => new FluentValidationState(validationResult));
+                         .Select(_ => GetValidationContextForProperty(expression))
+                         .SelectMany(context => ValidateAsync(context).ToObservable())
+                         .Select(validationResult => new FluentValidationState(validationResult));
     }
 
     private ValidationContext<TViewModel> GetValidationContextForProperty<TProperty>(
         Expression<Func<TViewModel, TProperty>> expression)
     {
         string[] properties = [((MemberExpression)expression.Body).Member.Name];
-        var context = new ValidationContext<TViewModel>(_viewModel, new PropertyChain(),
-            new MemberNameValidatorSelector(properties));
+        var context = new ValidationContext<TViewModel>(_viewModel,
+                                                        new PropertyChain(),
+                                                        new MemberNameValidatorSelector(properties));
         return context;
     }
 

@@ -6,7 +6,7 @@ using ReactiveBlazor.ViewModels;
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
 builder.Services
-    .ConfigureMudBlazor()
-    .ConfigureReactiveUI()
-    .AddViewModels();
+       .ConfigureMudBlazor()
+       .ConfigureReactiveUI()
+       .AddViewModels();
 await builder.Build().RunAsync();

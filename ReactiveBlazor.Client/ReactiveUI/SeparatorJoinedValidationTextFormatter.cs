@@ -3,8 +3,7 @@ using ReactiveUI.Validation.Formatters.Abstractions;
 
 namespace ReactiveBlazor.Client.ReactiveUI;
 
-public class SeparatorJoinedValidationTextFormatter(
-    string separator = SeparatorJoinedValidationTextFormatter.DefaultSeparator) : IValidationTextFormatter<string>
+public class SeparatorJoinedValidationTextFormatter(string separator = SeparatorJoinedValidationTextFormatter.DefaultSeparator) : IValidationTextFormatter<string>
 {
     public const string DefaultSeparator = "|";
     public static SeparatorJoinedValidationTextFormatter Default { get; } = new();

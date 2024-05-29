@@ -5,7 +5,8 @@ namespace ReactiveBlazor.Client.ReactiveUI.Forms;
 
 public class ReactiveDatePicker : MudDatePicker, IReactiveField
 {
-    [Parameter] public string? ValidationError { get; set; }
+    [Parameter]
+    public string? ValidationError { get; set; }
 
     protected override void OnParametersSet()
     {

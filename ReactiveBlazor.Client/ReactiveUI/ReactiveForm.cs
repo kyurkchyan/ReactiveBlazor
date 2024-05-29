@@ -14,12 +14,17 @@ public class ReactiveForm<T> : MudForm
         ValidationDelay = 0;
     }
 
-    [Parameter] public T? ViewModel { get; set; }
+    [Parameter]
+    public T? ViewModel { get; set; }
 
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
-        if (_viewModel == ViewModel) return;
+        if (_viewModel == ViewModel)
+        {
+            return;
+        }
+
         Model = _viewModel = ViewModel;
         if (_viewModel != null)
         {
