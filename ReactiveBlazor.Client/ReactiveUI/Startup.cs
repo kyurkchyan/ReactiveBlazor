@@ -20,6 +20,6 @@ public static class Startup
 
         return services
                .AddTransient<IActivationForViewFetcher, ActivationAfterRenderForViewFetcher>()
-               .AddTransient<IValidationTextFormatter<string>, FirstErrorValidationTextFormatter>();
+               .AddTransient<IValidationTextFormatter<string>, SeparatorJoinedValidationTextFormatter>();
     }
 }
