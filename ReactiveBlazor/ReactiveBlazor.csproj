@@ -9,6 +9,8 @@
   <ItemGroup>
     <PackageReference Include="MudBlazor" Version="6.19.1" />
     <PackageReference Include="ReactiveUI.Blazor" Version="20.1.1" />
+    <PackageReference Include="ReactiveUI.Fody" Version="19.5.41" />
+    <PackageReference Include="ReactiveUI.Validation" Version="4.0.9" />
     <ProjectReference Include="..\ReactiveBlazor.Client\ReactiveBlazor.Client.csproj" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.5" />
   </ItemGroup>
@@ -16,6 +18,10 @@
   <ItemGroup>
     <_ContentIncludedByDefault Remove="wwwroot\bootstrap\bootstrap.min.css" />
     <_ContentIncludedByDefault Remove="wwwroot\bootstrap\bootstrap.min.css.map" />
+    <_ContentIncludedByDefault Remove="Components\Layout\MainLayout.razor" />
+    <_ContentIncludedByDefault Remove="Components\Layout\NavMenu.razor" />
+    <_ContentIncludedByDefault Remove="Components\Pages\Error.razor" />
+    <_ContentIncludedByDefault Remove="Components\Pages\Home.razor" />
   </ItemGroup>
 
 </Project>

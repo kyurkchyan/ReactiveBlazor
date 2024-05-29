@@ -12,6 +12,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.5" />
     <PackageReference Include="MudBlazor" Version="6.19.1" />
     <PackageReference Include="ReactiveUI.Blazor" Version="20.1.1" />
+    <PackageReference Include="ReactiveUI.Fody" Version="19.5.41" />
     <PackageReference Include="ReactiveUI.Validation" Version="4.0.9" />
     <PackageReference Include="Splat.Microsoft.Extensions.DependencyInjection" Version="15.1.1" />
     <PackageReference Include="Splat.Microsoft.Extensions.Logging" Version="15.1.1" />
@@ -19,6 +20,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ReactiveBlazor.ViewModels\ReactiveBlazor.ViewModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="Components\Layout\MainLayout.razor" />
+    <AdditionalFiles Include="Components\Layout\NavMenu.razor" />
+    <AdditionalFiles Include="Components\Pages\Error.razor" />
+    <AdditionalFiles Include="Components\Pages\Home.razor" />
   </ItemGroup>
 
 </Project>
