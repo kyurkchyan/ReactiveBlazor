@@ -5,6 +5,7 @@
 <h3>Product Page</h3>
 
 <MudForm Model="ViewModel">
+    <MudButton Variant="Variant.Filled" Color="Color.Inherit" OnClick="OnClearClicked">Clear</MudButton>
     <ReactiveTextField
         @ref="_productName"
         @bind-Value="ViewModel!.Name"

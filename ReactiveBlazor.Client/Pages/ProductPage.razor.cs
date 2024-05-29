@@ -1,4 +1,5 @@
 using System.Reactive.Disposables;
+using System.Reactive.Linq;
 using ReactiveBlazor.Client.ReactiveUI.Forms;
 using ReactiveUI;
 using ReactiveUI.Validation.Extensions;
@@ -15,6 +16,14 @@ public partial class ProductPage
     {
         this.WhenActivated(disposables =>
         {
+            this.WhenAnyValue(v => v.ViewModel)
+                .WhereNotNull()
+                .Select(vm => vm.ValidationContext.ValidationStatusChange)
+                .Switch()
+                .DistinctUntilChanged()
+                .Subscribe(_ => InvokeAsync(StateHasChanged))
+                .DisposeWith(disposables);
+
             this.BindValidation(ViewModel, vm => vm.Name, v => v._productName.ValidationError)
                 .DisposeWith(disposables);
 
@@ -24,5 +33,17 @@ public partial class ProductPage
             this.BindValidation(ViewModel, vm => vm.ExpirationDate, v => v._expirationDate.ValidationError)
                 .DisposeWith(disposables);
         });
+    }
+
+    private void OnClearClicked()
+    {
+        if (ViewModel == null)
+        {
+            return;
+        }
+
+        ViewModel.Name = null;
+        ViewModel.Description = null;
+        ViewModel.ExpirationDate = null;
     }
 }

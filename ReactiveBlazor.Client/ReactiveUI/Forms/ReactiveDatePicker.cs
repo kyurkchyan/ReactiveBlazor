@@ -11,5 +11,6 @@ public class ReactiveDatePicker : MudDatePicker, IReactiveField
     {
         base.OnParametersSet();
         this.UpdateValidation();
+        FieldChanged(Date);
     }
 }
