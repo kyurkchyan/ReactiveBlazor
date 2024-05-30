@@ -30,7 +30,7 @@ public class ReactiveForm<T> : MudForm
         {
             Validation = (object _, string property) =>
             {
-                var errors = _viewModel.GetPropertyErrors(property);
+                var errors = _viewModel.GetPropertyErrors(property).Where(error => !string.IsNullOrWhiteSpace(error));
                 return errors;
             };
         }
