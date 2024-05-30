@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using ReactiveBlazor.ViewModels.Common.Validation;
 
-namespace ReactiveBlazor.Client.ReactiveUI;
+namespace ReactiveBlazor.Client.ReactiveUI.Forms;
 
 public class ReactiveForm<T> : MudForm
     where T : class, IValidatableViewModel
